@@ -125,14 +125,13 @@ include "db_connect.php";
 	 foreach ($kurse as $kurs) {
 	  $kurs_array[] = $kurs->kurs;
 	  echo '<option value="' . $kurs->kursid . '"';
-	  if (isset($_GET["kurs"])) {
-	   if (rawurlDEcode($_GET["kurs"]) == $kurs->kurs) {
-		echo ' selected="selected"';
-	   }
+	// Abgleich ob kursid und kursfs stimmen - Wenn ja, vorauswahl im select	 
+	  if ($kurs->kursid === $eintrag["kursfs"]) { 
+		echo 'selected="selected"';	
 	  }
-	  echo '>' . $kurs->kurs . '</option>';
-	 }
-   
+	 echo '>' . $kurs->kurs . '</option>';
+	}
+	 	   
    echo '
    </select>
    <p><label>Frage:  <br>
